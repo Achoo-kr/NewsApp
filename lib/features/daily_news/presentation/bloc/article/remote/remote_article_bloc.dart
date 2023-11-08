@@ -12,9 +12,11 @@ class RemoteArticlesBloc
   //즉, 여기서는 Loading이 initial state인 것
   RemoteArticlesBloc(this._getArticleUseCase)
       : super(const RemoteArticlesLoading()) {
+    //이벤트 핸들러에 getArticles 이벤트를 등록시키는 작업
     on<GetArticles>(onGetArticles);
   }
 
+  //이벤트와 상태를 받도록 함
   void onGetArticles(
       GetArticles event, Emitter<RemoteArticlesState> emit) async {
     final dataState = await _getArticleUseCase();
